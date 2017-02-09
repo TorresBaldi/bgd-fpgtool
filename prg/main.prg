@@ -33,6 +33,12 @@ BEGIN
 
 	end
 
+
+	set_mode(320, 240, bits_depth, mode_window);
+
+	png_folder += "/";
+	fpg_folder += "/";
+
 	// ejecuto las funciones
 	SWITCH ( action )
 

@@ -4,11 +4,6 @@ FUNCTION compile_fpgs();
 
 BEGIN
 
-	set_mode(320, 240, bits_depth, mode_window);
-
-	png_folder += "/";
-	fpg_folder += "/";
-
 	LOOP
 
 		// obtengo los nombres de las carpetas
@@ -95,11 +90,6 @@ END
 FUNCTION export_fpgs();
 
 BEGIN
-
-	set_mode(320, 240, bits_depth, mode_window);
-
-	png_folder += "/";
-	fpg_folder += "/";
 
 	LOOP
 
