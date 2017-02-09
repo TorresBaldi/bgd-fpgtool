@@ -3,9 +3,9 @@
 BennuGD tool to convert between folders of images and fpg files
 
 
-## PARAMETROS:
+## Parameters:
 
-	-c/-e (compilar/exportar)
+	-c/-e (compile / export)
 
 	png folder
 
@@ -14,11 +14,11 @@ BennuGD tool to convert between folders of images and fpg files
 	[color depth] ( 16/32 ) (solo en caso de compilar)
 
 
-## EJEMPLOS
+## Examples
 
-	compila todas las imagenes de fpg sources en fpg, a 16 bits
+	compiles into fpg files every folder of images from fpg-sources to fpg
 		fpg-tools -c fpg-sources fpg 16
 
-	exporta todos los fpg de la carpeta fpg en exports
+	exports every image of fpg files inside fpg folder out to exports folder
 		fpg-tools -e exports fpg
 
