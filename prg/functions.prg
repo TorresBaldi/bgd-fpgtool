@@ -22,7 +22,7 @@ BEGIN
 		// creo el nuevo fpg vacio
 		fpg = fpg_new();
 
-		say ( " - comienza trabajo en " folder_name );
+		say ( " - comienza trabajo en " + folder_name );
 
 		// agrego 1 a 1 los png
 		FOR (i=1; i<= 999; i++)
