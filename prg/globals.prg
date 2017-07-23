@@ -2,7 +2,6 @@
 
 import "mod_draw";
 import "mod_dir";
-import "mod_key";
 import "mod_map";
 import "mod_proc";
 import "mod_grproc";
@@ -38,6 +37,7 @@ GLOBAL
 	int fpg;
 	int i;
 	int j;
+	int result;
 	string png_name;
 	string fpg_name;
 	string filename;

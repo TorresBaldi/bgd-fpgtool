@@ -9,6 +9,8 @@ BEGIN
 		// obtengo los nombres de las carpetas
 		folder_name = glob ( png_folder + "*");
 
+		// say ( " - recorriendo " + folder_name );
+
 		// salgo del bucle al terminar
 		if ( folder_name == "" )
 			break;
@@ -28,10 +30,10 @@ BEGIN
 		FOR (i=1; i<= 999; i++)
 
 			if ( file_exists ( png_folder + folder_name + "/" + i + ".png" ) )
-				say("por agregar " + i + ".png a fpg " + fpg + "(" + folder_name + ")");
-				png_name = load_png( png_folder + folder_name + "/" + i + ".png" );
+				// say("por agregar " + i + ".png a fpg " + fpg + "(" + folder_name + ")");
+				png_name = load_png(png_folder + folder_name + "/" + i + ".png" );
 				fpg_add(fpg, i, 0, png_name);
-				say("[ok] agregado " + i + ".png a fpg " + fpg + "(" + folder_name + ")");
+				// say("[ok] agregado " + i + ".png a fpg " + fpg + "(" + folder_name + ")");
 			end
 
 		END
@@ -46,6 +48,8 @@ BEGIN
 			// "parseo" cada linea del archivo
 			cp_line = fgets( cp_handle );
 			WHILE ( cp_line <> "" )
+
+				// say("processing line: " + cp_line );
 
 				// grafico
 				last_comma_pos = find(cp_line, ",");
@@ -62,7 +66,7 @@ BEGIN
 				point_x = atoi( substr( cp_line, first_comma_pos+1, last_comma_pos ) );
 				point_y = atoi( substr( cp_line, last_comma_pos+1) );
 
-				//say("CP " + i + "-" + j + ": " + point_x + "," + point_y);
+				// say("Imagen " + i + ", CP" + j + ": (" + point_x + ", " + point_y + ")");
 
 				if ( j )
 					// establezco el punto de control
@@ -74,15 +78,22 @@ BEGIN
 				// obtengo el siguiente punto
 				cp_line = fgets( cp_handle );
 
+				// say("[ok] CP" + j);
+
 			END
 
+			// say(" -- CPs terminados -- ");
+
 			fclose( cp_handle );
+
+			// say(" -- Archivo de CPs cerrado -- ");
 
 		end
 
 		// guardo el fpg
-		fpg_save(fpg, fpg_folder + folder_name + ".fpg");
-		say ( "[ok] guardado: " + fpg_folder + folder_name + ".fpg" );
+		// say(" -- Guardando FPG " + fpg + ", como: " + fpg_folder + folder_name + ".fpg  -- ");
+		result = fpg_save(fpg, fpg_folder + folder_name + ".fpg");
+		say ( "Archivo " + fpg_folder + folder_name + ".fpg, Resultado: " + result);
 
 	END
 
