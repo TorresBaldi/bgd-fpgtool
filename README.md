@@ -2,6 +2,8 @@
 
 BennuGD tool to convert between folders of images and fpg files
 
+version 1.0
+
 
 ## Parameters:
 
