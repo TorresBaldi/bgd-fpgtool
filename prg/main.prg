@@ -2,7 +2,7 @@
 
 BEGIN
 
-	say( cd() );
+	// say( "Current Directory: " + cd() );
 
 	// establezco las opciones
 	if ( argv[1] == "-e" )
@@ -15,6 +15,8 @@ BEGIN
 		if ( argv[4] <> "" )
 			bits_depth = atoi( argv[4] );
 		end
+
+		say( "EXPORT, from " + fpg_folder + " to " + png_folder + ", color depth: " + bits_depth);
 
 	else
 
@@ -30,6 +32,8 @@ BEGIN
 		if ( argv[3+i] <> "" )
 			bits_depth = atoi( argv[3+i] );
 		end
+
+		say( "COMPILE, from '" + png_folder + "/' to '" + fpg_folder + "/', color depth: " + bits_depth);
 
 	end
 

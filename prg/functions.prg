@@ -2,12 +2,19 @@
 
 FUNCTION compile_fpgs();
 
+PRIVATE
+
+	// PNG added counter
+	int added_counter = 0;
+
+END
+
 BEGIN
 
 	LOOP
 
 		// obtengo los nombres de las carpetas
-		folder_name = glob ( png_folder + "*");
+		folder_name = glob( png_folder + "/*");
 
 		// say ( " - recorriendo " + folder_name );
 
@@ -24,19 +31,23 @@ BEGIN
 		// creo el nuevo fpg vacio
 		fpg = fpg_new();
 
-		say ( " - comienza trabajo en " + folder_name );
+		say ( " - proceso PNGs en " + folder_name );
 
 		// agrego 1 a 1 los png
+		added_counter = 0;
 		FOR (i=1; i<= 999; i++)
 
 			if ( file_exists ( png_folder + folder_name + "/" + i + ".png" ) )
-				// say("por agregar " + i + ".png a fpg " + fpg + "(" + folder_name + ")");
+				// say("[  ] por agregar " + i + ".png a fpg " + fpg + "(" + folder_name + ")");
 				png_name = load_png(png_folder + folder_name + "/" + i + ".png" );
 				fpg_add(fpg, i, 0, png_name);
-				// say("[ok] agregado " + i + ".png a fpg " + fpg + "(" + folder_name + ")");
+				added_counter++;
+				say("[ok] agregado " + i + ".png a fpg " + fpg + "(" + folder_name + ")");
 			end
 
 		END
+
+		say ( " - proceso CPs en " + folder_name );
 
 		// cargo los puntos de control
 		cp_name =  png_folder + folder_name + "/" + "cp.txt";
@@ -90,10 +101,14 @@ BEGIN
 
 		end
 
-		// guardo el fpg
-		// say(" -- Guardando FPG " + fpg + ", como: " + fpg_folder + folder_name + ".fpg  -- ");
-		result = fpg_save(fpg, fpg_folder + folder_name + ".fpg");
-		say ( "Archivo " + fpg_folder + folder_name + ".fpg, Resultado: " + result);
+		IF(added_counter>0)
+			// guardo el fpg
+			// say(" -- Guardando FPG como: " + fpg_folder + folder_name + ".fpg  -- ");
+			result = fpg_save(fpg, fpg_folder + folder_name + ".fpg");
+			say ( " - - [ok] Archivo " + fpg_folder + folder_name + ".fpg, Resultado: " + result);
+		ELSE
+			// say(" -- No guardo FPG " + fpg_folder + folder_name + ".fpg  -- ");
+		END
 
 	END
 
